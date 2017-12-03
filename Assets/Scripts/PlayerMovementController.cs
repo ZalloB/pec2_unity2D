@@ -6,14 +6,17 @@ public class PlayerMovementController : MonoBehaviour {
 
 	public float maxSpeed = 10f;
     public float jumpDistance = 350f;
-    private bool facingRight = true;
+    private bool facingRight = false;
     private bool isGrounded = true;
 
+
+    private SpriteRenderer rend;
 	private new Rigidbody2D rigidbody2D;
 	private Animator anim;
 
 	void Start()
 	{
+        rend = GetComponent<SpriteRenderer>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator> ();
 	}
@@ -28,12 +31,14 @@ public class PlayerMovementController : MonoBehaviour {
 
         rigidbody2D.velocity = new Vector2 (move * maxSpeed, rigidbody2D.velocity.y);
 
-		if (move > 0 && !facingRight)
-			Flip ();
-		else if (move < 0 && facingRight)
-			Flip ();
+        if (move > 0)
+            facingRight = false;
+        else if (move < 0)
+            facingRight = true;
+        Flip();
 
-        if(isGrounded)
+
+        if (isGrounded)
             anim.SetBool("isJumping", false);
         else
             anim.SetBool("isJumping", true);
@@ -42,7 +47,7 @@ public class PlayerMovementController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rigidbody2D.AddForce(Vector2.up * jumpDistance);
             isGrounded = false;
@@ -50,10 +55,11 @@ public class PlayerMovementController : MonoBehaviour {
 	}
 
 	void Flip(){
-		facingRight = !facingRight;
-		Vector3 scale = transform.localScale;
-		scale.x *= -1;
-		transform.localScale = scale;
+		//facingRight = !facingRight;
+        if (!facingRight)
+            rend.flipX = false;
+        else
+            rend.flipX = true;
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
