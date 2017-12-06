@@ -88,7 +88,7 @@ public class MapGeneration : MonoBehaviour{
                         {
                             Instantiate(ground, new Vector2(blockNum, blockHeight - i), Quaternion.identity);
                         }
-                        blockNum++;
+                        //blockNum++;
                     }else 
                         Instantiate(bridge, new Vector2(blockNum, blockHeight), Quaternion.identity );
                 }
