@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementController : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
 
 	public float maxSpeed = 10f;
     public float jumpDistance = 350f;
+    public float jumpDistanceMax = 100f;
     private bool facingRight = false;
     private bool isGrounded = true;
 
@@ -49,7 +50,7 @@ public class PlayerMovementController : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rigidbody2D.AddForce(Vector2.up * jumpDistance);
+            rigidbody2D.AddForce(Vector2.up * jumpDistance );
             isGrounded = false;
         }
 	}
@@ -64,9 +65,42 @@ public class PlayerMovementController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Player col " + collision.gameObject.tag);
+
         if ("floor".Equals(collision.gameObject.tag) || "item".Equals(collision.gameObject.tag))
         {
             isGrounded = true;
         }
+
+        if ("enemy".Equals(collision.gameObject.tag) && !isGrounded) {
+            Destroy(collision.gameObject);
+            GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("SetScore", ScoreManager.enemyPoints);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Player tri " + collision.gameObject.tag);
+        if ("enemy".Equals(collision.gameObject.tag) && isGrounded)
+        {
+            Hit();
+            Damage();
+        }
+    }
+
+    void Hit() {
+
+        rigidbody2D.AddForce(Vector2.up * (jumpDistanceMax));
+        if(Random.value <= 0.5f)
+            rigidbody2D.AddForce(Vector2.right * (jumpDistanceMax));
+        else
+            rigidbody2D.AddForce(Vector2.left * (jumpDistanceMax));
+
+        isGrounded = false;
+
+    }
+
+    void Damage() {
+        GameObject.Find("Player").GetComponent<PlayerHealth>().Damage();
     }
 }

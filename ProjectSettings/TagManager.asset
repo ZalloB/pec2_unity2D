@@ -8,6 +8,10 @@ TagManager:
   - item
   - limitLevel
   - spikes
+  - playerHB
+  - background
+  - enemy
+  - ScoreManager
   layers:
   - Default
   - TransparentFX
