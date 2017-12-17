@@ -5,6 +5,7 @@ public class SceneLoadManager : MonoBehaviour {
     public void LoadScreen(string name)
     {
         Time.timeScale = 1;
+        SoundManager.instance.musicSource.UnPause();
         UnityEngine.SceneManagement.SceneManager.LoadScene(name);
     }
 
@@ -16,5 +17,6 @@ public class SceneLoadManager : MonoBehaviour {
     {
         Time.timeScale = 1;
         GameObject.Find("CanvasMenu").SetActive(false);
+        SoundManager.instance.musicSource.UnPause();
     }
 }

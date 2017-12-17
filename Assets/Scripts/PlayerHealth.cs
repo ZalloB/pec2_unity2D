@@ -3,24 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
-
+    public AudioClip downPower;
     public int health;
     private int maxHealth = 3;
+    public bool powerUp;
 
 	// Use this for initialization
 	void Start () {
-        health = maxHealth;        
-	}
+        health = maxHealth;
+        powerUp = false;
+        
+    }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-
-    public void Damage() {
+    public void Damage(bool starPower) {
         health --;
-
-        GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("SetLifeUI");
+        if (!powerUp && !starPower) { 
+            GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("SetLifeUI");
+            GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("GameOver");
+        }
+        else if(!starPower)
+        {
+            SoundManager.instance.RandomizeSfx(downPower);
+            powerUp = false;
+        }
     }
 }

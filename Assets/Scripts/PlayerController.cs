@@ -7,12 +7,17 @@ public class PlayerController : MonoBehaviour {
 	public float maxSpeed = 10f;
     public float jumpDistance = 350f;
     public float jumpDistanceMax = 100f;
+    public bool starPower;
+
+    public AudioClip jump;
+    public AudioClip kick;
+
     private bool facingRight = false;
     private bool isGrounded = true;
 
 
     private SpriteRenderer rend;
-	private new Rigidbody2D rigidbody2D;
+	public new Rigidbody2D rigidbody2D;
 	private Animator anim;
 
 	void Start()
@@ -20,7 +25,8 @@ public class PlayerController : MonoBehaviour {
         rend = GetComponent<SpriteRenderer>();
 		rigidbody2D = GetComponent<Rigidbody2D>();
 		anim = GetComponent<Animator> ();
-	}
+        starPower = false;
+    }
 
 	void FixedUpdate(){
 		float move = Input.GetAxis ("Horizontal");
@@ -50,6 +56,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            SoundManager.instance.RandomizeSfx(jump);
             rigidbody2D.AddForce(Vector2.up * jumpDistance );
             isGrounded = false;
         }
@@ -65,14 +72,13 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Player col " + collision.gameObject.tag);
-
         if ("floor".Equals(collision.gameObject.tag) || "item".Equals(collision.gameObject.tag))
         {
             isGrounded = true;
         }
 
         if ("enemy".Equals(collision.gameObject.tag) && !isGrounded) {
+            SoundManager.instance.RandomizeSfx(kick);
             Destroy(collision.gameObject);
             GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("SetScore", ScoreManager.enemyPoints);
         }
@@ -80,13 +86,20 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Player tri " + collision.gameObject.tag);
-        if ("enemy".Equals(collision.gameObject.tag) && isGrounded)
+        if ("enemy".Equals(collision.gameObject.tag) && isGrounded && !starPower)
         {
-            Hit();
+            Hit(); 
             Damage();
         }
+        else if("enemy".Equals(collision.gameObject.tag) && isGrounded && starPower)
+        {
+            SoundManager.instance.RandomizeSfx(kick);
+            Destroy(collision.gameObject);
+            GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("SetScore", ScoreManager.enemyPoints);
+        }
     }
+
+
 
     void Hit() {
 
@@ -101,6 +114,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Damage() {
-        GameObject.Find("Player").GetComponent<PlayerHealth>().Damage();
+        GameObject.Find("Player").GetComponent<PlayerHealth>().Damage(starPower);
     }
 }
