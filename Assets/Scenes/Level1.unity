@@ -1678,7 +1678,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 125080174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 737, y: 398.5, z: 0}
+  m_LocalPosition: {x: 737, y: 371, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1568008604}
@@ -21280,7 +21280,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1150842795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -717, y: 378.5, z: 0}
+  m_LocalPosition: {x: -717, y: 351, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1877324765}
@@ -28281,7 +28281,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1568008603}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 717, y: 383.5, z: 0}
+  m_LocalPosition: {x: 717, y: 356, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 154730299}
@@ -32006,26 +32006,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 114077762214278358, guid: 0dcfac77398bf13479eb0467c04a66d1,
+    - target: {fileID: 114246320104433372, guid: 0dcfac77398bf13479eb0467c04a66d1,
         type: 2}
-      propertyPath: jumpDistanceMax
-      value: 300
+      propertyPath: velocity.x
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114077762214278358, guid: 0dcfac77398bf13479eb0467c04a66d1,
+    - target: {fileID: 114246320104433372, guid: 0dcfac77398bf13479eb0467c04a66d1,
         type: 2}
-      propertyPath: jump
-      value: 
-      objectReference: {fileID: 8300000, guid: 20475a4b90b56ed4c93f2c7d81a8d7ed, type: 3}
-    - target: {fileID: 114077762214278358, guid: 0dcfac77398bf13479eb0467c04a66d1,
-        type: 2}
-      propertyPath: kick
-      value: 
-      objectReference: {fileID: 8300000, guid: fc74e63c8436e43499c9b94ac4460442, type: 3}
-    - target: {fileID: 114436404806543774, guid: 0dcfac77398bf13479eb0467c04a66d1,
-        type: 2}
-      propertyPath: downPower
-      value: 
-      objectReference: {fileID: 8300000, guid: bfab8deeb5cb52548892774ee23a10ac, type: 3}
+      propertyPath: velocity.y
+      value: -5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dcfac77398bf13479eb0467c04a66d1, type: 2}
   m_IsPrefabParent: 0
