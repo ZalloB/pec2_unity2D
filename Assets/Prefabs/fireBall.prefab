@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4666128594059776}
   - component: {fileID: 198264942752889188}
   - component: {fileID: 199762165188327982}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,9 +40,9 @@ GameObject:
   - component: {fileID: 61060623998095136}
   - component: {fileID: 114470744023843318}
   - component: {fileID: 50012382838805376}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: fireBall
-  m_TagString: Player
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &61060623998095136
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -130,9 +130,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93e55537546b21546b7e07783c894919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 50012382838805376}
-  exploson: {fileID: 1073755361822506, guid: bbd521b7fc8efee47a682748e002d748, type: 2}
-  velocity: {x: 0, y: 0}
+  rigidbody2d: {fileID: 50012382838805376}
+  explosionObject: {fileID: 1073755361822506, guid: bbd521b7fc8efee47a682748e002d748,
+    type: 2}
+  velocity: {x: 10, y: 10}
 --- !u!198 &198264942752889188
 ParticleSystem:
   m_ObjectHideFlags: 1

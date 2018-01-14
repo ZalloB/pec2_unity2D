@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MapGeneration : MonoBehaviour{
 
@@ -110,9 +108,4 @@ public class MapGeneration : MonoBehaviour{
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

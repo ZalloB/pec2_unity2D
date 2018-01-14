@@ -1,21 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BoxManager : MonoBehaviour {
 
     public AudioClip brokeBox;
     public AudioClip jump;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 
     void OnTriggerEnter2D(Collider2D collision)

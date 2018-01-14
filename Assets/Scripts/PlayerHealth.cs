@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour {
     public AudioClip downPower;
@@ -16,11 +14,17 @@ public class PlayerHealth : MonoBehaviour {
     }
 	
 
-    public void Damage(bool starPower) {
+    public void Damage(bool starPower, GameObject respawn) {
         health --;
         if (!powerUp && !starPower) { 
             GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("SetLifeUI");
-            GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("GameOver");
+            if (health == 0) {
+                GameObject.Find("GameManager").GetComponent<GameLevelManager>().SendMessage("GameOver");
+            }
+            else
+            {
+                this.transform.position = new Vector3(respawn.transform.position.x, this.transform.position.y, transform.position.z);
+            }
         }
         else if(!starPower)
         {

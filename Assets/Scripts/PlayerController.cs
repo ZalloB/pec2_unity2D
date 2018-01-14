@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
@@ -19,6 +17,8 @@ public class PlayerController : MonoBehaviour {
     private SpriteRenderer rend;
 	public new Rigidbody2D rigidbody2D;
 	private Animator anim;
+
+    public GameObject respawn;
 
 	void Start()
 	{
@@ -114,6 +114,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Damage() {
-        GameObject.Find("Player").GetComponent<PlayerHealth>().Damage(starPower);
+        GameObject.Find("Player").GetComponent<PlayerHealth>().Damage(starPower, respawn);
     }
 }

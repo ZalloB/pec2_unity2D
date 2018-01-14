@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour {
 
@@ -22,12 +20,7 @@ public class EnemyBehaviour : MonoBehaviour {
         //rigidbody2D = GetComponentInParent<Rigidbody2D>();
     }
 
-    void Update() {
-        //if (facingRight)
-        //    rigidbody2D.velocity = new Vector2(move * maxSpeed * Time.deltaTime , rigidbody2D.velocity.y);
-        //else
-        //    rigidbody2D.velocity = new Vector2(-move * maxSpeed * Time.deltaTime, rigidbody2D.velocity.y);
-    }
+
 
     void FixedUpdate() {
 

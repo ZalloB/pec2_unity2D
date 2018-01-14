@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ItemManager : MonoBehaviour {
 
@@ -33,10 +31,7 @@ public class ItemManager : MonoBehaviour {
                 SoundManager.instance.RandomizeSfx(moneySound);
                 Instantiate(money, new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z), Quaternion.identity);
             }
-
-
-
-            
+           
             this.gameObject.GetComponent<SpriteRenderer>().sprite = boxUsed;
             isUsed = true;
 
